@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/swiper/swiper-bundle.min.css"
+		/>
+		<link rel="stylesheet" href="style.css" />
+		<title>FORMA'SINT.</title>
+	</head>
+	<body>
+		<header id="home" class="hero-section">
+			<section>
+				<div class="top_bar_container">
+					<div>
+						<div>
+							<div class="logo"></div>
+							<p>FORMA'SINT.</p>
+						</div>
+						<div class="idomods">
+							<p>IDOMODS&nbsp;</p>
+							<img src="images/tag.svg" />
+						</div>
+					</div>
+					<nav>
+						<a href="#home" class="home">HOME</a>
+						<a href="#featured-products" class="feature-products"
+							>FEATURED PRODUCTS</a
+						>
+						<a href="#product-listing" class="product-listing"
+							>PRODUCT LISTING</a
+						>
+					</nav>
+					<div>
+						<img src="images/profile.svg" alt="profile" />
+						<p>FRONTEND DEVELOPER</p>
+					</div>
+					
+					<button class="mobile-menu-btn">
+						<span class="hamburger-icon">
+							<span class="line"></span>
+							<span class="line"></span>
+							<span class="line"></span>
+						</span>
+						MENU
+					</button>
+				</div>
+				<div class="logoPhoto">
+					<img src="images/logo-text.svg" alt="" />
+					<div><img src="images/hero.jfif" alt="hero-photo" /></div>
+				</div>
+			</section>
+		</header>
+		
+		<div class="mobile-menu">
+			<div class="mobile-menu-header">
+				<img src="images/logo.svg" alt="profile" />
+				<button class="mobile-menu-close">
+					<img src="images/cross.svg" alt="Close" /> CLOSE
+				</button>
+			</div>
+			
+			<nav class="mobile-nav">
+				<a href="#home">HOME</a>
+				<a href="#featured-products">FEATURED PRODUCTS</a>
+				<a href="#product-listing">PRODUCT LISTING</a>
+			</nav>
+		</div>
+
+		<div class="mobile-menu-overlay"></div>
+
+		<main>
+			<section id="featured-products" class="featured-products">
+				<div class="title">
+					<p>FEATURED PRODUCTS</p>
+					<h1>Browse featured</h1>
+				</div>
+				<div class="sliderContainer">
+					<div class="swiper product-slider">
+						<div class="swiper-wrapper"></div>
+
+						<div class="swiper-button-next">
+							<img src="images/rightArrow.svg" alt="Right swiper button" />
+						</div>
+					</div>
+				</div>
+				<div class="progress-indicator">
+					<div class="progress-bar"></div>
+				</div>
+			</section>
+			<section id="product-listing" class="products-listing">
+				<div class="num-per-page">
+					<p>NUMBER OF PRODUCTS PER PAGE</p>
+					<div class="custom-dropdown">
+						<div class="custom-dropdown-header">
+							<span class="selected-value">14</span>
+							<span class="dropdown-arrow"></span>
+						</div>
+						<ul class="custom-dropdown-options">
+							<li class="dropdown-option" data-value="14">14</li>
+							<li class="dropdown-option" data-value="24">24</li>
+							<li class="dropdown-option" data-value="36">36</li>
+						</ul>
+					</div>
+				</div>
+				<div class="products"></div>
+				<div class="pagination"></div>
+			</section>
+		</main>
+		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+		<script type="module" src="app.js"></script>
+	</body>
+</html>
