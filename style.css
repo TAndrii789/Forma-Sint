@@ -358,14 +358,16 @@ body {
 	overflow-x: hidden !important;
 }
 
-
 .swiper-button-next {
-	outline: none !important;
 	border: none !important;
-	-webkit-tap-highlight-color: transparent !important;
 	background-color: transparent !important;
 	background: none !important;
 	box-shadow: none !important;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
+	outline: none;
 	width: 72px;
 	height: 72px;
 	border-radius: 50%;
@@ -1364,4 +1366,25 @@ body {
 html,
 body {
 	overflow-x: hidden !important;
+}
+
+/* Prevent blue highlight on rapid clicks for all product elements */
+.product-card,
+.jacket-card,
+.product-image,
+.swiper-product-card,
+.swiper-slide,
+.product-image img,
+.wishlist-btn {
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
+	outline: none;
+}
+
+/* Ensure images can't be highlighted/dragged */
+img {
+	-webkit-user-drag: none;
+	user-drag: none;
 }
