@@ -189,15 +189,17 @@ function unlockScroll() {
 
 // Initialize components when DOM is ready
 document.addEventListener("DOMContentLoaded", function () {
-	if (window.innerWidth <= 768) {
-		initializeSlider();
-		updateSliderForMobile();
-	} else {
-		initializeSlider();
-	}
+	if (window.innerWidth <= 768) updateSliderForMobile();
 	initializeDropdown();
 	updatePage();
 	initializeMobileMenu();
+});
+
+window.addEventListener("load", function () {
+	initializeSlider();
+	// initializeDropdown();
+	// updatePage();
+	// initializeMobileMenu();
 });
 
 function initializeSlider() {
@@ -226,8 +228,9 @@ function initializeSlider() {
 		updateOnImagesReady: true,
 		watchSlidesProgress: true,
 		breakpoints: {
-			320: { slidesPerView: 1.05, slidesPerGroup: 1, spaceBetween: 8 },
+			320: { slidesPerView: 1.1, slidesPerGroup: 1, spaceBetween: 16 },
 			480: { slidesPerView: 1.2, slidesPerGroup: 1, spaceBetween: 16 },
+			560: { slidesPerView: 2, slidesPerGroup: 2, spaceBetween: 16 },
 			768: { slidesPerView: 2, slidesPerGroup: 2, spaceBetween: 16 },
 			992: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 24 },
 			1200: { slidesPerView: 4, slidesPerGroup: 4, spaceBetween: 24 },
@@ -240,6 +243,7 @@ function initializeSlider() {
 
 		const isMobile = window.innerWidth <= 768;
 		const totalProducts = featuredProducts.length;
+		const topBarContainer = document.querySelector(".top-bar__container");
 
 		if (isMobile) {
 			const slidesPerView =
@@ -258,9 +262,11 @@ function initializeSlider() {
 			);
 			progressBar.style.transform = `translateX(${progressPercent * 3}%)`;
 
-			const topBarContainer = document.querySelector(".top_bar_container");
 			topBarContainer.style.width = `${window.innerWidth}px`;
+
+			deleteBlankSlides();
 		} else {
+			topBarContainer.removeAttribute("style");
 			const slidesPerGroup = swiper.params.slidesPerGroup;
 
 			const totalGroups = Math.ceil(totalProducts / slidesPerGroup);
@@ -269,11 +275,21 @@ function initializeSlider() {
 				Math.floor(swiper.realIndex / slidesPerGroup) % totalGroups;
 
 			const progressPercent = (currentGroupIndex / (totalGroups - 1)) * 100;
+
 			progressBar.style.transform = `translateX(${progressPercent * 3}%)`;
+
+			deleteBlankSlides();
 		}
 	});
 }
 
+function deleteBlankSlides() {
+	if (swiper.params.slidesPerView !== 3) {
+		document
+			.querySelectorAll(".swiper-slide-blank")
+			.forEach((el) => el.remove());
+	}
+}
 window.addEventListener("resize", function () {
 	const isMobile = window.innerWidth <= 768;
 
@@ -301,7 +317,7 @@ function updateSliderForMobile() {
 
 function initializeDropdown() {
 	const dropdown = document.querySelector(".custom-dropdown");
-	const dropdownHeader = dropdown.querySelector(".custom-dropdown-header");
+	const dropdownHeader = dropdown.querySelector(".custom-dropdown__header");
 	const dropdownOptions = dropdown.querySelectorAll(".dropdown-option");
 	const selectedValue = dropdown.querySelector(".selected-value");
 
@@ -576,11 +592,11 @@ function initializeProductPopup() {
 
 // Mobile menu functionality with scroll position save
 function initializeMobileMenu() {
-	const menuBtn = document.querySelector(".mobile-menu-btn");
+	const menuBtn = document.querySelector(".mobile-menu__btn");
 	const menu = document.querySelector(".mobile-menu");
-	const overlay = document.querySelector(".mobile-menu-overlay");
-	const closeBtn = document.querySelector(".mobile-menu-close");
-	const navLinks = document.querySelectorAll(".mobile-nav a");
+	const overlay = document.querySelector(".mobile-menu__overlay");
+	const closeBtn = document.querySelector(".mobile-menu__close");
+	const navLinks = document.querySelectorAll(".mobile__nav a");
 
 	menuBtn.addEventListener("click", () => {
 		lockScroll();

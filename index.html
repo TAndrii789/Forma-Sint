@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="images/logoHover.svg" type="image/x-icon" />
 		<link
 			rel="stylesheet"
 			href="https://unpkg.com/swiper/swiper-bundle.min.css"
@@ -11,11 +12,11 @@
 		<title>FORMA'SINT.</title>
 	</head>
 	<body>
-		<header id="home" class="hero-section">
-			<section>
-				<div class="top_bar_container">
-					<div>
-						<div>
+		<header id="home" class="header__container">
+			<div class="header-inner__container">
+				<div class="top-bar__container">
+					<div class="logo-idomods__container">
+						<div class="logo__container">
 							<div class="logo"></div>
 							<p>FORMA'SINT.</p>
 						</div>
@@ -24,6 +25,7 @@
 							<img src="images/tag.svg" />
 						</div>
 					</div>
+
 					<nav>
 						<a href="#home" class="home">HOME</a>
 						<a href="#featured-products" class="feature-products"
@@ -33,12 +35,13 @@
 							>PRODUCT LISTING</a
 						>
 					</nav>
-					<div>
+
+					<div class="profile__container">
 						<img src="images/profile.svg" alt="profile" />
 						<p>FRONTEND DEVELOPER</p>
 					</div>
-					
-					<button class="mobile-menu-btn">
+
+					<button class="mobile-menu__btn">
 						<span class="hamburger-icon">
 							<span class="line"></span>
 							<span class="line"></span>
@@ -47,29 +50,32 @@
 						MENU
 					</button>
 				</div>
-				<div class="logoPhoto">
+
+				<div class="logo-photo">
 					<img src="images/logo-text.svg" alt="" />
-					<div><img src="images/hero.jfif" alt="hero-photo" /></div>
+					<div class="hero__container">
+						<img src="images/hero.jfif" alt="hero-photo" />
+					</div>
 				</div>
-			</section>
+			</div>
 		</header>
-		
+
 		<div class="mobile-menu">
-			<div class="mobile-menu-header">
+			<div class="mobile-menu__header">
 				<img src="images/logo.svg" alt="profile" />
-				<button class="mobile-menu-close">
+				<button class="mobile-menu__close">
 					<img src="images/cross.svg" alt="Close" /> CLOSE
 				</button>
 			</div>
-			
-			<nav class="mobile-nav">
+
+			<nav class="mobile__nav">
 				<a href="#home">HOME</a>
 				<a href="#featured-products">FEATURED PRODUCTS</a>
 				<a href="#product-listing">PRODUCT LISTING</a>
 			</nav>
 		</div>
 
-		<div class="mobile-menu-overlay"></div>
+		<div class="mobile-menu__overlay"></div>
 
 		<main>
 			<section id="featured-products" class="featured-products">
@@ -77,7 +83,7 @@
 					<p>FEATURED PRODUCTS</p>
 					<h1>Browse featured</h1>
 				</div>
-				<div class="sliderContainer">
+				<div class="slider-container">
 					<div class="swiper product-slider">
 						<div class="swiper-wrapper"></div>
 
@@ -94,7 +100,7 @@
 				<div class="num-per-page">
 					<p>NUMBER OF PRODUCTS PER PAGE</p>
 					<div class="custom-dropdown">
-						<div class="custom-dropdown-header">
+						<div class="custom-dropdown__header">
 							<span class="selected-value">14</span>
 							<span class="dropdown-arrow"></span>
 						</div>
