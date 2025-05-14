@@ -361,57 +361,38 @@ async function fetchPageData() {
 		const productsDom = document.querySelector(".products");
 		productsDom.innerHTML = "";
 		bannerAdded = false;
-		let allItems = [];
 
-		// Calculate which API pages we need to fetch based on current pagination
-		const startItem = (currentPage - 1) * numPerPage;
-		const startPage = Math.floor(startItem / 10) + 1;
-		const pagesNeeded = Math.ceil(numPerPage / 10);
+		// Fetch exactly the number of products needed for the current page
+		const response = await fetch(
+			`https://brandstestowy.smallhost.pl/api/random?pageNumber=${currentPage}&pageSize=${numPerPage}`
+		);
 
-		// API returns 10 items per page, so we might need multiple requests
-		for (let i = 0; i < pagesNeeded; i++) {
-			const pageToFetch = startPage + i;
-			if (pageToFetch > totalPages) break;
-
-			const response = await fetch(
-				`https://brandstestowy.smallhost.pl/api/random?pageNumber=${pageToFetch}`
-			);
-
-			if (!response.ok) {
-				throw new Error(`HTTP error! status: ${response.status}`);
-			}
-
-			const data = await response.json();
-			allItems = allItems.concat(data.data);
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
 		}
-		// Calculate offset within first page to start displaying from
-		const offsetInFirstPage = startItem % 10;
 
-		// Render products starting from the correct offset
-		allItems
-			.slice(offsetInFirstPage, offsetInFirstPage + numPerPage)
-			.forEach((item, index) => {
-				const productElement = document.createElement("div");
-				productElement.classList.add("jacket-card");
-				productElement.innerHTML = `
-                <p class='product-id'>ID: ${
-									item.id < 10 ? `0${item.id}` : item.id
-								}</p>
-                <img class="lazy-load" data-src="${item.image}" alt="${
-					item.id
-				}">
+		const data = await response.json();
+		const allItems = data.data;
+
+		// Render all products from the response
+		allItems.forEach((item, index) => {
+			const productElement = document.createElement("div");
+			productElement.classList.add("jacket-card");
+			productElement.innerHTML = `
+                <p class='product-id'>ID: ${item.id < 10 ? `0${item.id}` : item.id}</p>
+                <img class="lazy-load" data-src="${item.image}" alt="${item.id}">
             `;
-				productsDom.appendChild(productElement);
+			productsDom.appendChild(productElement);
 
-				// Add banner after 4th product on mobile, 5th on desktop
-				if (
-					!bannerAdded &&
-					((window.innerWidth <= 768 && index === 3) ||
-						(window.innerWidth > 768 && index === 4))
-				) {
-					const bannerElement = document.createElement("div");
-					bannerElement.classList.add("banner-card");
-					bannerElement.innerHTML = `
+			// Add banner after 4th product on mobile, 5th on desktop
+			if (
+				!bannerAdded &&
+				((window.innerWidth <= 768 && index === 3) ||
+					(window.innerWidth > 768 && index === 4))
+			) {
+				const bannerElement = document.createElement("div");
+				bannerElement.classList.add("banner-card");
+				bannerElement.innerHTML = `
                     <img src="images/banner.jfif" alt="Banner" class="banner-image">
                     <div class="banner-content">
                         <div>
@@ -421,10 +402,10 @@ async function fetchPageData() {
                         <button class="banner-button">CHECK THIS OUT <img src="images/bannerArrow.svg" alt="Banner Arrow" class="banner-arrow-image"></button>
                     </div>
                 `;
-					productsDom.appendChild(bannerElement);
-					bannerAdded = true;
-				}
-			});
+				productsDom.appendChild(bannerElement);
+				bannerAdded = true;
+			}
+		});
 
 		lazyLoadImages();
 		initializeProductPopup();
