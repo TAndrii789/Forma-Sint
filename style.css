@@ -718,7 +718,7 @@ body {
 	}
 	.hero__container img {
     object-position: center bottom;
-	height: 80%;
+	height: 78%;
 }
 }
 
@@ -1026,6 +1026,7 @@ body {
 
 	.hero__container img {
     	object-position: center bottom;
+		height: 81.5%;
 	}
 	.featured-products{
 		padding: 36px 0 32px 0;
